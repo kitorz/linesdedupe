@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Remove Duplicate Emails from a List — Free Email Deduper</title>
+  <meta name="description" content="Remove duplicate emails from a list in your browser. Ignores case and Gmail dots/+tags, flags invalid addresses, and never uploads your list." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://linesdedupe.com/remove-duplicate-emails-list.html" />
+  <meta property="og:title" content="Remove Duplicate Emails from a List — Free Email Deduper" />
+  <meta property="og:description" content="Remove duplicate emails from a list in your browser. Ignores case and Gmail dots/+tags, flags invalid addresses, and never uploads your list." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230071e3'/%3E%3Cpath d='M8 11h16M8 16h10M8 21h16' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this tool upload my email list?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Everything runs in your browser and nothing is sent to a server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are Gmail aliases treated as duplicates?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Dots and +tags in Gmail addresses are normalized, so aliases collapse to one entry."
+      }
+    }
+  ]
+}
+  </script>
+  <script src="/analytics.config.js"></script>
+  <script src="/analytics.js" defer></script>
+</head>
+<body data-example="ann@site.com\nAnn@Site.com\njohn.doe@gmail.com\njohndoe+news@gmail.com\nnot-an-email\n" data-mode="email" data-file="unique-emails.txt">
+  <div class="ambient" aria-hidden="true"><i class="blob-a"></i><i class="blob-b"></i><i class="blob-c"></i></div>
+
+  <header class="wrap">
+    <div class="masthead">
+      <a class="wordmark" href="/">
+        <span class="mark" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><path d="M2.5 4.5h11M2.5 8h6.5M2.5 11.5h11"/></svg></span>
+        lines<span class="dim">dedupe</span>
+      </a>
+      <span class="pages">Free · private · in your browser</span>
+    </div>
+    <nav class="nav" aria-label="Pages">
+      <a href="/">Remove duplicate lines</a>
+      <a href="/remove-duplicate-lines-online.html">Online</a>
+      <a href="/unique-lines-only.html">Unique lines only</a>
+      <a href="/dedupe-list-online.html">Dedupe a list</a>
+      <a href="/remove-duplicate-emails-list.html" aria-current="page">Duplicate emails</a>
+      <a href="/compare-two-lists.html">Compare two lists</a>
+    </nav>
+
+    <div class="hero is-sub">
+      <p class="eyebrow">Paste · dedupe · done</p>
+      <h1>Remove Duplicate Emails from a List</h1>
+      <p class="lead">Clean a subscriber or outreach list before you send. This email deduper compares addresses case-insensitively and treats Gmail dots and +tags as the same inbox — all locally.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="window" aria-label="Remove duplicate lines tool">
+      <div class="titlebar">
+        <span class="lights" aria-hidden="true"><i class="l-red"></i><i class="l-yellow"></i><i class="l-green"></i></span>
+        <p class="window-title">
+          <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.5 4.5h11M2.5 8h6.5M2.5 11.5h11"/></svg>
+          Remove Duplicate Lines
+        </p>
+        <span class="title-right">on-device</span>
+      </div>
+
+      <div class="window-body">
+        <div class="segmented">
+          <div class="seg" role="group" aria-label="Options">
+            <span class="seg-label">Options</span>
+            <div class="seg-group">
+              <label><input type="checkbox" id="ignoreCase" checked /> Ignore case</label>
+              <label><input type="checkbox" id="trim" checked /> Trim spaces</label>
+              <label><input type="checkbox" id="dropBlank" checked /> Blank lines</label>
+            </div>
+            <span class="seg-divider" aria-hidden="true"></span>
+            <div class="seg-group">
+              <label class="seg-select"><span>Keep</span>
+                <select id="keep" aria-label="Keep which occurrence">
+                  <option value="first" selected>first</option>
+                  <option value="last">last</option>
+                </select>
+              </label>
+              <label class="seg-select"><span>Sort</span>
+                <select id="sort" aria-label="Sort order">
+                  <option value="none" selected>as pasted</option>
+                  <option value="asc">A → Z</option>
+                  <option value="desc">Z → A</option>
+                </select>
+              </label>
+            </div>
+          </div>
+          <div class="seg-actions">
+            <button type="button" id="example" class="ghost">Load example</button>
+          </div>
+        </div>
+
+        <div class="editor">
+          <div class="pane">
+            <div class="pane-head">
+              <h2><span class="dot" aria-hidden="true"></span>Input</h2>
+              <button type="button" id="clearIn" class="ghost">Clear</button>
+            </div>
+            <textarea id="input" rows="14" placeholder="one email per line…" spellcheck="false" aria-label="Input lines"></textarea>
+          </div>
+
+          <div class="split-rule" aria-hidden="true">
+            <span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </div>
+
+          <div class="pane is-output">
+            <div class="pane-head">
+              <h2><span class="dot" aria-hidden="true"></span>Output</h2>
+              <div class="actions">
+                <button type="button" id="copy"><span class="btn-label">Copy</span></button>
+                <button type="button" id="download" class="ghost">Download .txt</button>
+              </div>
+            </div>
+            <textarea id="output" rows="14" readonly spellcheck="false" placeholder="Your unique lines appear here as you type." aria-label="Deduplicated output"></textarea>
+            <p class="empty-hint">Paste on the left and the clean list shows up here — instantly.</p>
+            <p class="restored" id="restored" hidden>Picked up where you left off — <button type="button" class="linklike" id="restoredClear">start fresh</button></p>
+            <p class="pane-foot hint"><span class="kbd">⌘</span>/<span class="kbd">Ctrl</span> + <span class="kbd">Enter</span> dedupe &amp; copy · <span class="kbd">Esc</span> leaves the box · <span class="kbd">/</span> jumps in</p>
+          </div>
+        </div>
+
+        <div class="statusbar">
+          <p class="stats" id="stats" aria-live="polite" aria-label="0 in, 0 unique, 0 removed"><span class="n" data-v="0">0</span> in → <span class="n" data-v="0">0</span> unique · <span class="n n-removed" data-v="0">0</span> removed</p>
+          <span class="trust" id="trust" title="Deduplication runs in JavaScript inside this tab. No upload, no account, no tracking."><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.8 3.2 3.6v4c0 3 2.1 5.4 4.8 6.6 2.7-1.2 4.8-3.6 4.8-6.6v-4L8 1.8Z"/><path d="m5.9 7.9 1.5 1.5 2.8-2.9"/></svg>nothing leaves your device</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="recent" id="recent" hidden>
+      <span class="recent-label">Recent</span>
+      <ul class="recent-list" id="recentList"></ul>
+      <button type="button" class="recent-clear" id="recentClear" title="Forget the last pastes stored in this browser">Forget</button>
+    </div>
+
+    <article class="prose">
+      <h2>How to remove duplicate emails</h2>
+      <ol>
+        <li>Paste your email list — one address per line.</li>
+        <li>Keep <em>Ignore case</em> on: <code>Ann@Site.com</code> and <code>ann@site.com</code> are the same address.</li>
+        <li>Check the status line: it also flags lines that do not look like valid email addresses.</li>
+        <li>Copy the cleaned list into your email platform, or download it as <code>.txt</code>.</li>
+      </ol>
+      <h2>Gmail dots and plus-tags</h2>
+      <p>On Gmail, <code>john.doe@gmail.com</code>, <code>johndoe@gmail.com</code> and <code>johndoe+news@gmail.com</code> all reach the same inbox. This tool normalizes those variants so they count as one subscriber, which keeps your bounce and complaint rates down.</p>
+      <h2>Privacy first</h2>
+      <p>Email lists are personal data. Nothing here is uploaded, logged or stored — the deduplication happens in your browser tab. Still, follow your local rules (GDPR/CAN-SPAM) when mailing a list.</p>
+      <p>Related: <a href="/dedupe-list-online.html">dedupe any list</a> · <a href="/compare-two-lists.html">compare two lists</a> · <a href="/">remove duplicate lines</a></p>
+    </article>
+  </main>
+
+  <footer class="wrap foot">
+    <p><a href="/">← Remove duplicate lines</a> <span class="sep">·</span> Free tool <span class="sep">·</span> Client-side only <span class="sep">·</span> <a href="/privacy.html">Privacy</a></p>
+  </footer>
+  <p class="toast" id="toast" role="status" aria-live="polite"></p>
+  <script src="/app.js"></script>
+</body>
+</html>

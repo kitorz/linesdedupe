@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Unique Lines Only — Extract Only Unique Lines from Text</title>
+  <meta name="description" content="Keep unique lines only: strip every repeated line and get a clean list of unique entries. Free browser tool, keep first or last occurrence, optional A–Z sort." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://linesdedupe.com/unique-lines-only.html" />
+  <meta property="og:title" content="Unique Lines Only — Extract Only Unique Lines from Text" />
+  <meta property="og:description" content="Keep unique lines only: strip every repeated line and get a clean list of unique entries. Free browser tool, keep first or last occurrence, optional A–Z sort." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230071e3'/%3E%3Cpath d='M8 11h16M8 16h10M8 21h16' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does unique lines only mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The output keeps one copy of every line and removes all repeated lines."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does order matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No \u2014 with Keep first occurrence selected, the original order is preserved."
+      }
+    }
+  ]
+}
+  </script>
+  <script src="/analytics.config.js"></script>
+  <script src="/analytics.js" defer></script>
+</head>
+<body data-example="red\nblue\nred\ngreen\nblue\nGREEN\n" data-ignore-case="on">
+  <div class="ambient" aria-hidden="true"><i class="blob-a"></i><i class="blob-b"></i><i class="blob-c"></i></div>
+
+  <header class="wrap">
+    <div class="masthead">
+      <a class="wordmark" href="/">
+        <span class="mark" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><path d="M2.5 4.5h11M2.5 8h6.5M2.5 11.5h11"/></svg></span>
+        lines<span class="dim">dedupe</span>
+      </a>
+      <span class="pages">Free · private · in your browser</span>
+    </div>
+    <nav class="nav" aria-label="Pages">
+      <a href="/">Remove duplicate lines</a>
+      <a href="/remove-duplicate-lines-online.html">Online</a>
+      <a href="/unique-lines-only.html" aria-current="page">Unique lines only</a>
+      <a href="/dedupe-list-online.html">Dedupe a list</a>
+      <a href="/remove-duplicate-emails-list.html">Duplicate emails</a>
+      <a href="/compare-two-lists.html">Compare two lists</a>
+    </nav>
+
+    <div class="hero is-sub">
+      <p class="eyebrow">Paste · dedupe · done</p>
+      <h1>Unique Lines Only</h1>
+      <p class="lead">Keep one copy of every line and drop the rest. This page is tuned for “unique lines only”: fast, local, and no data leaves your browser.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="window" aria-label="Remove duplicate lines tool">
+      <div class="titlebar">
+        <span class="lights" aria-hidden="true"><i class="l-red"></i><i class="l-yellow"></i><i class="l-green"></i></span>
+        <p class="window-title">
+          <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.5 4.5h11M2.5 8h6.5M2.5 11.5h11"/></svg>
+          Remove Duplicate Lines
+        </p>
+        <span class="title-right">on-device</span>
+      </div>
+
+      <div class="window-body">
+        <div class="segmented">
+          <div class="seg" role="group" aria-label="Options">
+            <span class="seg-label">Options</span>
+            <div class="seg-group">
+              <label><input type="checkbox" id="ignoreCase" checked /> Ignore case</label>
+              <label><input type="checkbox" id="trim" checked /> Trim spaces</label>
+              <label><input type="checkbox" id="dropBlank" checked /> Blank lines</label>
+            </div>
+            <span class="seg-divider" aria-hidden="true"></span>
+            <div class="seg-group">
+              <label class="seg-select"><span>Keep</span>
+                <select id="keep" aria-label="Keep which occurrence">
+                  <option value="first" selected>first</option>
+                  <option value="last">last</option>
+                </select>
+              </label>
+              <label class="seg-select"><span>Sort</span>
+                <select id="sort" aria-label="Sort order">
+                  <option value="none" selected>as pasted</option>
+                  <option value="asc">A → Z</option>
+                  <option value="desc">Z → A</option>
+                </select>
+              </label>
+            </div>
+          </div>
+          <div class="seg-actions">
+            <button type="button" id="example" class="ghost">Load example</button>
+          </div>
+        </div>
+
+        <div class="editor">
+          <div class="pane">
+            <div class="pane-head">
+              <h2><span class="dot" aria-hidden="true"></span>Input</h2>
+              <button type="button" id="clearIn" class="ghost">Clear</button>
+            </div>
+            <textarea id="input" rows="14" placeholder="paste lines to keep only unique ones…" spellcheck="false" aria-label="Input lines"></textarea>
+          </div>
+
+          <div class="split-rule" aria-hidden="true">
+            <span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></span>
+          </div>
+
+          <div class="pane is-output">
+            <div class="pane-head">
+              <h2><span class="dot" aria-hidden="true"></span>Output</h2>
+              <div class="actions">
+                <button type="button" id="copy"><span class="btn-label">Copy</span></button>
+                <button type="button" id="download" class="ghost">Download .txt</button>
+              </div>
+            </div>
+            <textarea id="output" rows="14" readonly spellcheck="false" placeholder="Your unique lines appear here as you type." aria-label="Deduplicated output"></textarea>
+            <p class="empty-hint">Paste on the left and the clean list shows up here — instantly.</p>
+            <p class="restored" id="restored" hidden>Picked up where you left off — <button type="button" class="linklike" id="restoredClear">start fresh</button></p>
+            <p class="pane-foot hint"><span class="kbd">⌘</span>/<span class="kbd">Ctrl</span> + <span class="kbd">Enter</span> dedupe &amp; copy · <span class="kbd">Esc</span> leaves the box · <span class="kbd">/</span> jumps in</p>
+          </div>
+        </div>
+
+        <div class="statusbar">
+          <p class="stats" id="stats" aria-live="polite" aria-label="0 in, 0 unique, 0 removed"><span class="n" data-v="0">0</span> in → <span class="n" data-v="0">0</span> unique · <span class="n n-removed" data-v="0">0</span> removed</p>
+          <span class="trust" id="trust" title="Deduplication runs in JavaScript inside this tab. No upload, no account, no tracking."><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.8 3.2 3.6v4c0 3 2.1 5.4 4.8 6.6 2.7-1.2 4.8-3.6 4.8-6.6v-4L8 1.8Z"/><path d="m5.9 7.9 1.5 1.5 2.8-2.9"/></svg>nothing leaves your device</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="recent" id="recent" hidden>
+      <span class="recent-label">Recent</span>
+      <ul class="recent-list" id="recentList"></ul>
+      <button type="button" class="recent-clear" id="recentClear" title="Forget the last pastes stored in this browser">Forget</button>
+    </div>
+
+    <article class="prose">
+      <h2>How to get unique lines only</h2>
+      <ol>
+        <li>Paste the list you want to shrink.</li>
+        <li>Leave <em>Keep first occurrence</em> selected to preserve the original order of first appearances.</li>
+        <li>Turn on <em>Ignore case</em> so <code>Apple</code> and <code>apple</code> count as the same line.</li>
+      </ol>
+      <h2>Unique lines vs. all duplicates</h2>
+      <p>This page returns <strong>unique lines only</strong> — the deduplicated result. If you want the opposite (show only the lines that appeared more than once), use your browser's search on the output, or ask for that mode in <a href="/dedupe-list-online.html">the dedupe tool</a>.</p>
+      <h2>Common uses</h2>
+      <p>Extract unique SKUs, tags, domains, keywords, or IDs from an exported list. The live counter shows how many lines were removed, so you can sanity-check the result before copying.</p>
+      <p>Related: <a href="/remove-duplicate-lines-online.html">remove duplicate lines online</a> · <a href="/compare-two-lists.html">compare two lists</a> · <a href="/">remove duplicate lines</a></p>
+    </article>
+  </main>
+
+  <footer class="wrap foot">
+    <p><a href="/">← Remove duplicate lines</a> <span class="sep">·</span> Free tool <span class="sep">·</span> Client-side only <span class="sep">·</span> <a href="/privacy.html">Privacy</a></p>
+  </footer>
+  <p class="toast" id="toast" role="status" aria-live="polite"></p>
+  <script src="/app.js"></script>
+</body>
+</html>

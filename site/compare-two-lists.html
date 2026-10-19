@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Compare Two Lists — Find Differences Online</title>
+  <meta name="description" content="Compare two lists online: see what is only in list A, only in list B, or in both. Paste, pick a mode, copy the result. Free, private, no upload." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://linesdedupe.com/compare-two-lists.html" />
+  <meta property="og:title" content="Compare Two Lists — Find Differences Online" />
+  <meta property="og:description" content="Paste two lists and see what is only in A, only in B, or in both. Runs in your browser — nothing uploaded." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230071e3'/%3E%3Cpath d='M8 11h16M8 16h10M8 21h16' stroke='white' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I compare two lists and find the differences?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Paste one list into List A and the other into List B, then choose a mode: only in A, only in B, in both, or all unique. The result appears instantly and can be copied or downloaded."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the comparison ignore case and extra spaces?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, by default. Ignore case and trim spaces are on, so Ann and ann match. You can turn either off for a strict character-by-character comparison."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are my lists uploaded anywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Both lists are compared in JavaScript inside your browser tab. Nothing is sent to a server, so private lists are safe to compare."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a limit on list size?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The comparison runs locally and handles lists of thousands of lines instantly. Very large pastes are limited only by your browser's memory."
+      }
+    }
+  ]
+}
+  </script>
+  <script src="/analytics.config.js"></script>
+  <script src="/analytics.js" defer></script>
+</head>
+<body data-tool="compare" data-mode="only-a"
+      data-example-a="apple\nbanana\ncherry\ndate\nelderberry\n"
+      data-example-b="banana\ncherry\nfig\ngrape\n">
+  <div class="ambient" aria-hidden="true"><i class="blob-a"></i><i class="blob-b"></i><i class="blob-c"></i></div>
+
+  <header class="wrap">
+    <div class="masthead">
+      <a class="wordmark" href="/">
+        <span class="mark" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><path d="M2.5 4.5h11M2.5 8h6.5M2.5 11.5h11"/></svg></span>
+        lines<span class="dim">dedupe</span>
+      </a>
+      <span class="pages">Free · private · in your browser</span>
+    </div>
+    <nav class="nav" aria-label="Pages">
+      <a href="/">Remove duplicate lines</a>
+      <a href="/remove-duplicate-lines-online.html">Online</a>
+      <a href="/unique-lines-only.html">Unique lines only</a>
+      <a href="/dedupe-list-online.html">Dedupe a list</a>
+      <a href="/remove-duplicate-emails-list.html">Duplicate emails</a>
+      <a href="/compare-two-lists.html" aria-current="page">Compare two lists</a>
+    </nav>
+
+    <div class="hero is-sub">
+      <p class="eyebrow">Paste · compare · done</p>
+      <h1>Compare Two Lists</h1>
+      <p class="lead">Paste two lists and see exactly what differs — what is only in A, only in B, or in both. The comparison runs in your browser: no upload, no signup.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="window" aria-label="Compare two lists tool">
+      <div class="titlebar">
+        <span class="lights" aria-hidden="true"><i class="l-red"></i><i class="l-yellow"></i><i class="l-green"></i></span>
+        <p class="window-title">
+          <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2.5 4.5h11M2.5 8h6.5M2.5 11.5h11"/></svg>
+          Compare Two Lists
+        </p>
+        <span class="title-right">on-device</span>
+      </div>
+
+      <div class="window-body">
+        <div class="segmented">
+          <div class="seg" role="group" aria-label="Options">
+            <span class="seg-label">Mode</span>
+            <div class="seg-group">
+              <label class="seg-select" id="modeWrap"><span>Show</span>
+                <select id="mode" aria-label="Which lines to show">
+                  <option value="onlyA" selected>only in A</option>
+                  <option value="onlyB">only in B</option>
+                  <option value="both">in both</option>
+                  <option value="unique">all unique</option>
+                </select>
+              </label>
+            </div>
+            <span class="seg-divider" aria-hidden="true"></span>
+            <div class="seg-group">
+              <label><input type="checkbox" id="ignoreCase" checked /> Ignore case</label>
+              <label><input type="checkbox" id="trim" checked /> Trim spaces</label>
+              <label><input type="checkbox" id="dropBlank" checked /> Blank lines</label>
+            </div>
+            <span class="seg-divider" aria-hidden="true"></span>
+            <div class="seg-group">
+              <label class="seg-select"><span>Sort</span>
+                <select id="sort" aria-label="Sort order">
+                  <option value="none" selected>as pasted</option>
+                  <option value="asc">A → Z</option>
+                  <option value="desc">Z → A</option>
+                </select>
+              </label>
+            </div>
+          </div>
+          <div class="seg-actions">
+            <button type="button" id="example" class="ghost">Load example</button>
+          </div>
+        </div>
+
+        <div class="editor is-compare">
+          <div class="pane">
+            <div class="pane-head">
+              <h2><span class="dot" aria-hidden="true"></span>List A</h2>
+              <div class="actions">
+                <button type="button" id="copyA" class="ghost"><span class="btn-label">Copy</span></button>
+              </div>
+            </div>
+            <textarea id="inputA" rows="14" placeholder="paste the first list here, one item per line…" spellcheck="false" aria-label="List A"></textarea>
+          </div>
+
+          <div class="compare-split" aria-hidden="true">
+            <span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3.5 1.5 6 4 8.5M1.5 6h5M12 7.5 14.5 10 12 12.5M14.5 10h-5"/></svg></span>
+          </div>
+
+          <div class="pane">
+            <div class="pane-head">
+              <h2><span class="dot" aria-hidden="true"></span>List B</h2>
+              <div class="actions">
+                <button type="button" id="copyB" class="ghost"><span class="btn-label">Copy</span></button>
+              </div>
+            </div>
+            <textarea id="inputB" rows="14" placeholder="paste the second list here, one item per line…" spellcheck="false" aria-label="List B"></textarea>
+          </div>
+        </div>
+
+        <div class="statusbar" style="margin-bottom:14px">
+          <p class="stats" id="stats" aria-live="polite" aria-label="0 unique in list A, 0 unique in list B, result: 0 only in A"><span class="n" data-v="0">0</span> in A · <span class="n" data-v="0">0</span> in B · <span class="n n-removed" data-v="0">0</span> only in A</p>
+          <span class="trust" id="trust" title="Both lists are compared in JavaScript inside this tab. No upload, no account, no tracking."><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.8 3.2 3.6v4c0 3 2.1 5.4 4.8 6.6 2.7-1.2 4.8-3.6 4.8-6.6v-4L8 1.8Z"/><path d="m5.9 7.9 1.5 1.5 2.8-2.9"/></svg>nothing leaves your device</span>
+        </div>
+
+        <div class="editor">
+          <div class="pane is-output" style="grid-column:1 / -1">
+            <div class="pane-head">
+              <h2><span class="dot" aria-hidden="true"></span>Result</h2>
+              <div class="actions">
+                <button type="button" id="copy"><span class="btn-label">Copy</span></button>
+                <button type="button" id="download" class="ghost">Download .txt</button>
+                <button type="button" id="clearIn" class="ghost">Clear</button>
+              </div>
+            </div>
+            <textarea id="output" rows="14" readonly spellcheck="false" placeholder="Lines that match your mode appear here as you type." aria-label="Comparison result"></textarea>
+            <p class="empty-hint">Paste into List A and List B and the difference shows up here — instantly.</p>
+            <p class="restored" id="restored" hidden>Picked up where you left off — <button type="button" class="linklike" id="restoredClear">start fresh</button></p>
+            <p class="pane-foot hint"><span class="kbd">⌘</span>/<span class="kbd">Ctrl</span> + <span class="kbd">Enter</span> compare &amp; copy · <span class="kbd">Esc</span> leaves the box · <span class="kbd">/</span> jumps in</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="recent" id="recent" hidden>
+      <span class="recent-label">Recent</span>
+      <ul class="recent-list" id="recentList"></ul>
+      <button type="button" class="recent-clear" id="recentClear" title="Forget the last comparisons stored in this browser">Forget</button>
+    </div>
+
+    <article class="prose">
+      <h2>How to compare two lists</h2>
+      <ol>
+        <li>Paste the first list into <strong>List A</strong> and the second into <strong>List B</strong> — one item per line.</li>
+        <li>Pick a mode: <em>only in A</em>, <em>only in B</em>, <em>in both</em> or <em>all unique</em>.</li>
+        <li>Copy the result, or download it as a <code>.txt</code> file. The result updates as you type.</li>
+      </ol>
+      <h2>What each mode gives you</h2>
+      <ul>
+        <li><strong>Only in A</strong> — items that exist in the first list but not the second. This is the classic “what did we lose?” check (old list vs new list, expected vs exported).</li>
+        <li><strong>Only in B</strong> — items that are only in the second list: new signups, new SKUs, entries added since the last export.</li>
+        <li><strong>In both</strong> — the intersection. Use it to confirm that two sources really overlap before you merge them.</li>
+        <li><strong>All unique</strong> — the union of both lists with duplicates removed, useful for building one combined master list.</li>
+      </ul>
+      <h2>Matches are compared as whole lines</h2>
+      <p>Each line is one item, and an item matches only if the whole line matches — this is not a substring or diff search. By default <em>Ignore case</em> and <em>Trim spaces</em> are on, so <code>Apple</code>, <code>apple</code> and <code>&nbsp;apple&nbsp;</code> are the same item. Turn them off for a strict, character-by-character comparison; turn on <em>A → Z</em> if you want the result sorted rather than in pasted order.</p>
+      <p>Pasted a spreadsheet row instead of a column? If a list arrives with no line breaks but tabs or commas, it is split on those separators for you.</p>
+      <h2>Lists that work well here</h2>
+      <p>Email lists before and after a cleanup, keyword lists from two tools, product SKUs from two exports, allow/block lists, invite lists, tag lists, redirect maps, or two versions of the same CSV column. Because the page only compares lines of text, the content type does not matter.</p>
+      <h2>Private by design</h2>
+      <p>Nothing is uploaded: the comparison runs in JavaScript inside this tab, so it is safe for customer data, internal lists and anything you would not paste into a web service. The lists you paste can be remembered locally on this device so you can pick up where you left off — <strong>Forget</strong> next to the Recent chips wipes that, and none of it is ever sent to a server.</p>
+      <h2>Need duplicates gone first?</h2>
+      <p>To clean up one list instead of comparing two, use <a href="/">remove duplicate lines</a>, <a href="/dedupe-list-online.html">dedupe a list online</a>, or <a href="/unique-lines-only.html">keep unique lines only</a>. Comparing email lists before a merge? <a href="/remove-duplicate-emails-list.html">Dedupe the email list</a> first, then compare.</p>
+    </article>
+  </main>
+
+  <footer class="wrap foot">
+    <p><a href="/">← Remove duplicate lines</a> <span class="sep">·</span> Free tool <span class="sep">·</span> Client-side only <span class="sep">·</span> <a href="/privacy.html">Privacy</a></p>
+  </footer>
+  <p class="toast" id="toast" role="status" aria-live="polite"></p>
+  <script src="/app.js"></script>
+</body>
+</html>
