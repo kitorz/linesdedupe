@@ -13,4 +13,4 @@ Notes:
 
 - The live site is hosted on **Cloudflare Pages**; this repo is a source mirror, not the host.
 - `site/` contains only deployable static files (no progress notes).
-- `site/analytics.config.js` ships with empty IDs, so analytics stay disabled in the public repo.
+- `site/analytics.config.js` ships with the live GA4 and Clarity IDs.
